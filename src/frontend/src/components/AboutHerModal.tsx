@@ -93,7 +93,7 @@ export default function AboutHerModal({
                 style={{ animationDelay: "0.5s" }}
               >
                 Based in Newcastle, OK. She is dedicated to helping you move
-                like the most optimized version of yourself!
+                shining like a celestial star!
               </span>
               <span
                 className={`block font-bold text-2xl mt-4 transition-all duration-500 ease-in-out ${
@@ -103,6 +103,23 @@ export default function AboutHerModal({
                 }`}
               >
                 Buckle Up!
+              </span>
+              <span
+                className={`block transition-all duration-500 ease-in-out ${
+                  isBlueTheme ? "shimmer-text-blue" : "shimmer-text"
+                }`}
+                style={{ animationDelay: "1s" }}
+              >
+                <a
+                  href="https://angiecreates.pro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`underline font-semibold transition-colors duration-500 ease-in-out hover:opacity-80 ${
+                    isBlueTheme ? "text-blue-300" : "text-bright-gold"
+                  }`}
+                >
+                  Visit angiecreates.pro
+                </a>
               </span>
             </p>
           </div>

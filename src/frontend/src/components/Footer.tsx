@@ -69,7 +69,7 @@ export default function Footer({ isBlueTheme = false }: FooterProps) {
               <div className="relative">
                 <img
                   src="/assets/generated/officiallogo4CREATE-transparent.png"
-                  alt="angieCREATES logo"
+                  alt="angieCREATEs logo"
                   className={`w-32 h-32 sm:w-40 sm:h-40 rounded-lg object-contain shadow-lg transition-all duration-500 ease-in-out ${
                     isBlueTheme
                       ? "border-2 border-blue-400/50"
@@ -84,7 +84,7 @@ export default function Footer({ isBlueTheme = false }: FooterProps) {
                     : "text-gold shimmer-text"
                 }`}
               >
-                made with love by angieCREATES
+                made with love by angieCREATEs
               </p>
             </div>
           </div>

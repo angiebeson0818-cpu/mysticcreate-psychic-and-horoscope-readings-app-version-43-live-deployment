@@ -1,6 +1,9 @@
 import { Music, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+const MUSIC_SRC =
+  "/assets/mysticcreate_first_song_ever-019d4c62-c8ca-75a9-b6db-b3d8f62856d4.mp4";
+
 interface ZenMusicPlayerProps {
   isBlueTheme: boolean;
 }
@@ -8,43 +11,36 @@ interface ZenMusicPlayerProps {
 export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
 
   useEffect(() => {
-    const audio = new Audio(
-      "https://cdn.pixabay.com/audio/2022/03/10/audio_270f5f9a4d.mp3",
-    );
+    const audio = new Audio(MUSIC_SRC);
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;
 
-    // Attempt autoplay
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          // Autoplay blocked by browser — show tooltip hint
-          setIsPlaying(false);
-          setTimeout(() => setShowTooltip(true), 1500);
-        });
-    }
+    // Try autoplay
+    audio
+      .play()
+      .then(() => {
+        setIsPlaying(true);
+        setShowTooltip(false);
+      })
+      .catch(() => {
+        // Browser blocked autoplay — show tooltip until user taps
+        setShowTooltip(true);
+      });
 
     return () => {
       audio.pause();
       audio.src = "";
-      audioRef.current = null;
     };
   }, []);
 
   const handleToggle = () => {
+    setShowTooltip(false);
     const audio = audioRef.current;
     if (!audio) return;
-
-    // Dismiss tooltip on first user interaction
-    setShowTooltip(false);
 
     if (isPlaying) {
       audio.pause();
@@ -52,18 +48,13 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
     } else {
       audio
         .play()
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          setIsPlaying(false);
-        });
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
     }
   };
 
   return (
     <div className="fixed bottom-40 right-6 z-50 flex flex-col items-center gap-2">
-      {/* Tooltip / badge for blocked autoplay */}
       {showTooltip && !isPlaying && (
         <div
           className={`
@@ -81,12 +72,10 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
         </div>
       )}
 
-      {/* Play/Pause button */}
       <button
         type="button"
         onClick={handleToggle}
-        data-ocid="music.toggle"
-        aria-label={isPlaying ? "Pause zen music" : "Play zen music"}
+        aria-label={isPlaying ? "Pause music" : "Play music"}
         className={`
           relative w-12 h-12 rounded-full
           hover:scale-110 active:scale-95 transition-all duration-500
@@ -103,7 +92,6 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
           <Pause
             className={`
               w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              transition-colors duration-500 ease-in-out
               ${isBlueTheme ? "text-blue-200" : "text-yellow-200"}
             `}
           />
@@ -111,7 +99,6 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
           <Play
             className={`
               w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              transition-colors duration-500 ease-in-out
               ${isBlueTheme ? "text-blue-200" : "text-yellow-200"}
             `}
           />
