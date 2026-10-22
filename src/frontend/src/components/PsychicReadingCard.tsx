@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import StarBorder from "@/components/reactbits/StarBorder";
 import { Sparkles } from "lucide-react";
 
 interface PsychicReadingCardProps {
@@ -42,17 +42,30 @@ export default function PsychicReadingCard({
         Intuitive insights from the cosmic realm
       </p>
 
-      <Button
+      <StarBorder
         onClick={onOpen}
-        className={`w-full font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out hover:shadow-lg ${
+        radius={12}
+        thickness={2}
+        stars={2}
+        glow={0.9}
+        sparkle
+        hover="lap"
+        color={isBlueTheme ? "#93c5fd" : "#F7E7A1"}
+        trailColor={isBlueTheme ? "#3b82f6" : "#D4AF37"}
+        backgroundColor={
           isBlueTheme
-            ? "bg-indigo-600 hover:bg-indigo-600/80 text-white hover:shadow-indigo-600/50"
-            : "bg-burnt-orange hover:bg-burnt-orange/80 text-white hover:shadow-burnt-orange/50"
-        }`}
+            ? "linear-gradient(135deg, #1e3a8a, #312e81)"
+            : "linear-gradient(135deg, #0B0B0B 0%, #1a1405 55%, #0B0B0B 100%)"
+        }
+        textColor={isBlueTheme ? "#dbeafe" : "#F5E6C8"}
+        borderColor={
+          isBlueTheme ? "rgba(147, 197, 253, 0.35)" : "rgba(212, 175, 55, 0.45)"
+        }
+        className="w-full py-5 text-lg font-bold tracking-wide transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
       >
-        <Sparkles className="w-5 h-5 mr-2" />
+        <Sparkles className="w-5 h-5" />
         Start Session
-      </Button>
+      </StarBorder>
 
       {/* Shine Effect */}
       <div
