@@ -78,13 +78,13 @@ export default function MysticFeatures({
   isBlueTheme = false,
   onStartReading,
 }: MysticFeaturesProps) {
-  const accent = isBlueTheme ? "text-blue-300" : "text-gold";
+  const accent = isBlueTheme ? "text-amber-100" : "text-gold";
   const bright = isBlueTheme
-    ? "text-blue-300 glowing-title-blue"
+    ? "text-amber-100 glowing-title-blue"
     : "text-bright-gold glowing-title";
-  const soft = isBlueTheme ? "text-blue-200/90" : "text-cream/90";
+  const soft = isBlueTheme ? "text-amber-50/90" : "text-cream/90";
   const panel = isBlueTheme
-    ? "bg-gradient-to-br from-blue-600/25 to-indigo-900/50 border-blue-400/40"
+    ? "bg-gradient-to-br from-neutral-800/25 to-neutral-950/50 border-amber-100/40"
     : "bg-gradient-to-br from-black/60 to-background/60 border-gold/40";
 
   return (
@@ -155,7 +155,7 @@ export default function MysticFeatures({
               key={id}
               className={`group relative overflow-hidden rounded-2xl p-6 backdrop-blur-md border-2 transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-2xl ${panel} ${
                 isBlueTheme
-                  ? "hover:border-blue-400/70 hover:shadow-blue-400/20"
+                  ? "hover:border-amber-100/70 hover:shadow-amber-100/20"
                   : "hover:border-gold/70 hover:shadow-gold/20"
               }`}
             >
@@ -165,14 +165,14 @@ export default function MysticFeatures({
                 }`}
               >
                 <Icon
-                  className={`w-6 h-6 ${isBlueTheme ? "text-blue-100" : "text-yellow-100"}`}
+                  className={`w-6 h-6 ${isBlueTheme ? "text-amber-50" : "text-yellow-100"}`}
                 />
               </div>
               <h4 className={`text-xl font-bold mb-2 ${accent}`}>{title}</h4>
               <p className={soft}>{body}</p>
               <div
                 className={`absolute inset-0 bg-gradient-to-r from-transparent to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none ${
-                  isBlueTheme ? "via-blue-400/10" : "via-gold/10"
+                  isBlueTheme ? "via-amber-100/10" : "via-gold/10"
                 }`}
               />
             </article>

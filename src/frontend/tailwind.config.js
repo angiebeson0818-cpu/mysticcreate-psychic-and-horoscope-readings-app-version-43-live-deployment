@@ -19,7 +19,7 @@ export default {
                 border: 'oklch(var(--border))',
                 input: 'oklch(var(--input))',
                 ring: 'oklch(var(--ring) / <alpha-value>)',
-                background: 'oklch(var(--background))',
+                background: 'oklch(var(--background) / <alpha-value>)',
                 foreground: 'oklch(var(--foreground))',
                 primary: {
                     DEFAULT: 'oklch(var(--primary) / <alpha-value>)',
@@ -66,10 +66,10 @@ export default {
                     border: 'oklch(var(--sidebar-border))',
                     ring: 'oklch(var(--sidebar-ring))'
                 },
-                gold: 'oklch(var(--gold))',
-                'burnt-orange': 'oklch(var(--burnt-orange))',
-                cream: 'oklch(var(--cream))',
-                sage: 'oklch(var(--sage))'
+                gold: 'oklch(var(--gold) / <alpha-value>)',
+                                cream: 'oklch(var(--cream) / <alpha-value>)',
+                sage: 'oklch(var(--sage) / <alpha-value>)',
+                onyx: 'oklch(var(--onyx) / <alpha-value>)'
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -94,7 +94,8 @@ export default {
                 'accordion-up': 'accordion-up 0.2s ease-out'
             },
             fontFamily: {
-                sans: ['Cinzel', 'serif']
+                sans: ['Montserrat', 'sans-serif'],
+                display: ['"Playfair Display"', 'serif']
             }
         }
     },
