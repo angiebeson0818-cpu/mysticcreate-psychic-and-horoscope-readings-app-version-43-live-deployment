@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HoroscopeModal from "@/components/HoroscopeModal";
 import HoroscopeReadingCard from "@/components/HoroscopeReadingCard";
+import MysticFeatures from "@/components/MysticFeatures";
 import PsychicReadingCard from "@/components/PsychicReadingCard";
 import PsychicReadingModal from "@/components/PsychicReadingModal";
 import ZenMusicPlayer from "@/components/ZenMusicPlayer";
@@ -131,6 +132,14 @@ export default function HomePage() {
             >
               Your Path, Unveiled
             </p>
+            <p
+              className={`mt-4 text-base md:text-lg transition-colors duration-500 ease-in-out ${
+                isBlueTheme ? "text-blue-200/80" : "text-cream/80"
+              }`}
+            >
+              Birth chart insights, love compatibility, soulmate sketch and AI
+              guidance.
+            </p>
           </div>
 
           {/* Zodiac Sign Calendar Strip */}
@@ -147,6 +156,12 @@ export default function HomePage() {
               isBlueTheme={isBlueTheme}
             />
           </div>
+
+          {/* Gemini add-ons: features, Soulmate Sketch, subscription info */}
+          <MysticFeatures
+            isBlueTheme={isBlueTheme}
+            onStartReading={() => setIsPsychicModalOpen(true)}
+          />
         </main>
 
         <Footer isBlueTheme={isBlueTheme} />
