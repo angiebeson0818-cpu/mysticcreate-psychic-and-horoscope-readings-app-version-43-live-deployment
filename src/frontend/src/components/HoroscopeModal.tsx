@@ -122,14 +122,14 @@ export default function HoroscopeModal({
       <DialogContent
         className={`max-w-2xl border-2 backdrop-blur-xl transition-all duration-500 ease-in-out ${
           isBlueTheme
-            ? "bg-gradient-to-br from-blue-900/90 via-indigo-800/90 to-blue-900/90 border-blue-400/50"
-            : "bg-gradient-to-br from-background via-burnt-orange/10 to-background border-gold/50"
+            ? "bg-gradient-to-br from-neutral-950/90 via-neutral-900/90 to-neutral-950/90 border-amber-100/50"
+            : "bg-gradient-to-br from-background via-gold/10 to-background border-gold/50"
         }`}
       >
         <DialogHeader>
           <DialogTitle
             className={`text-3xl font-bold text-center flex items-center justify-center gap-2 transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "text-blue-300" : "text-gold"
+              isBlueTheme ? "text-amber-100" : "text-gold"
             }`}
           >
             <Moon className="w-8 h-8" />
@@ -145,7 +145,7 @@ export default function HoroscopeModal({
               src="/assets/generated/zodiac-wheel.dim_400x400.jpg"
               alt="Zodiac Wheel"
               className={`w-40 h-40 object-cover rounded-full border-2 floating-element transition-colors duration-500 ease-in-out ${
-                isBlueTheme ? "border-blue-400/50" : "border-gold/50"
+                isBlueTheme ? "border-amber-100/50" : "border-gold/50"
               }`}
             />
           </div>
@@ -155,7 +155,7 @@ export default function HoroscopeModal({
             <Label
               htmlFor="horoscopeName"
               className={`block text-lg font-semibold mb-3 text-center transition-colors duration-500 ease-in-out ${
-                isBlueTheme ? "text-blue-200" : "text-cream"
+                isBlueTheme ? "text-amber-50" : "text-cream"
               }`}
             >
               Your Name (Optional)
@@ -168,7 +168,7 @@ export default function HoroscopeModal({
               onChange={(e) => setUserName(e.target.value)}
               className={`text-lg py-6 rounded-xl transition-all duration-500 ease-in-out ${
                 isBlueTheme
-                  ? "bg-indigo-900/30 border-2 border-blue-400/40 text-blue-100 placeholder:text-blue-300/50"
+                  ? "bg-neutral-950/30 border-2 border-amber-100/40 text-amber-50 placeholder:text-amber-100/50"
                   : "bg-sage/20 border-2 border-gold/40 text-cream placeholder:text-cream/50"
               }`}
             />
@@ -178,7 +178,7 @@ export default function HoroscopeModal({
           <div className="mb-8">
             <Label
               className={`block text-lg font-semibold mb-3 text-center transition-colors duration-500 ease-in-out ${
-                isBlueTheme ? "text-blue-200" : "text-cream"
+                isBlueTheme ? "text-amber-50" : "text-cream"
               }`}
             >
               Select Your Zodiac Sign
@@ -187,7 +187,7 @@ export default function HoroscopeModal({
               <SelectTrigger
                 className={`w-full text-lg py-6 rounded-xl transition-all duration-500 ease-in-out ${
                   isBlueTheme
-                    ? "bg-indigo-900/30 border-2 border-blue-400/40 text-blue-100"
+                    ? "bg-neutral-950/30 border-2 border-amber-100/40 text-amber-50"
                     : "bg-sage/20 border-2 border-gold/40 text-cream"
                 }`}
               >
@@ -196,7 +196,7 @@ export default function HoroscopeModal({
               <SelectContent
                 className={`border-2 transition-all duration-500 ease-in-out ${
                   isBlueTheme
-                    ? "bg-blue-900/95 border-blue-400/40"
+                    ? "bg-neutral-950/95 border-amber-100/40"
                     : "bg-background border-gold/40"
                 }`}
               >
@@ -206,7 +206,7 @@ export default function HoroscopeModal({
                     value={sign.value}
                     className={`text-lg py-3 cursor-pointer transition-colors duration-500 ease-in-out ${
                       isBlueTheme
-                        ? "text-blue-100 hover:bg-blue-400/20"
+                        ? "text-amber-50 hover:bg-amber-100/20"
                         : "text-cream hover:bg-gold/20"
                     }`}
                   >
@@ -227,7 +227,7 @@ export default function HoroscopeModal({
               <TabsList
                 className={`grid w-full grid-cols-2 border transition-all duration-500 ease-in-out ${
                   isBlueTheme
-                    ? "bg-indigo-900/30 border-blue-400/30"
+                    ? "bg-neutral-950/30 border-amber-100/30"
                     : "bg-sage/20 border-gold/30"
                 }`}
               >
@@ -235,8 +235,8 @@ export default function HoroscopeModal({
                   value="daily"
                   className={`transition-all duration-500 ease-in-out ${
                     isBlueTheme
-                      ? "data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
-                      : "data-[state=active]:bg-burnt-orange data-[state=active]:text-white"
+                      ? "data-[state=active]:bg-neutral-800 data-[state=active]:text-white"
+                      : "data-[state=active]:bg-gold data-[state=active]:text-onyx"
                   }`}
                 >
                   <Moon className="w-4 h-4 mr-2" />
@@ -246,8 +246,8 @@ export default function HoroscopeModal({
                   value="love"
                   className={`transition-all duration-500 ease-in-out ${
                     isBlueTheme
-                      ? "data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
-                      : "data-[state=active]:bg-burnt-orange data-[state=active]:text-white"
+                      ? "data-[state=active]:bg-neutral-800 data-[state=active]:text-white"
+                      : "data-[state=active]:bg-gold data-[state=active]:text-onyx"
                   }`}
                 >
                   <Heart className="w-4 h-4 mr-2" />
@@ -260,12 +260,12 @@ export default function HoroscopeModal({
                   <div className="flex flex-col items-center justify-center py-12">
                     <Loader2
                       className={`w-12 h-12 animate-spin mb-4 transition-colors duration-500 ease-in-out ${
-                        isBlueTheme ? "text-blue-300" : "text-gold"
+                        isBlueTheme ? "text-amber-100" : "text-gold"
                       }`}
                     />
                     <p
                       className={`text-lg transition-colors duration-500 ease-in-out ${
-                        isBlueTheme ? "text-blue-200/80" : "text-cream/80"
+                        isBlueTheme ? "text-amber-50/80" : "text-cream/80"
                       }`}
                     >
                       Reading the stars...
@@ -276,8 +276,8 @@ export default function HoroscopeModal({
                     <div
                       className={`rounded-2xl p-8 border backdrop-blur-sm transition-all duration-500 ease-in-out ${
                         isBlueTheme
-                          ? "bg-gradient-to-br from-indigo-600/30 to-blue-700/30 border-blue-400/30"
-                          : "bg-gradient-to-br from-burnt-orange/20 to-sage/20 border-gold/30"
+                          ? "bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 border-amber-100/30"
+                          : "bg-gradient-to-br from-gold/20 to-sage/20 border-gold/30"
                       }`}
                     >
                       <div className="text-center mb-4">
@@ -286,7 +286,7 @@ export default function HoroscopeModal({
                         </span>
                         <h3
                           className={`text-2xl font-bold mt-2 capitalize transition-colors duration-500 ease-in-out ${
-                            isBlueTheme ? "text-blue-300" : "text-gold"
+                            isBlueTheme ? "text-amber-100" : "text-gold"
                           }`}
                         >
                           {selectedSign}
@@ -294,7 +294,7 @@ export default function HoroscopeModal({
                       </div>
                       <p
                         className={`text-lg leading-relaxed text-center font-medium transition-colors duration-500 ease-in-out ${
-                          isBlueTheme ? "text-blue-100" : "text-cream"
+                          isBlueTheme ? "text-amber-50" : "text-cream"
                         }`}
                       >
                         {personalizeReading(currentReading)}
@@ -306,8 +306,8 @@ export default function HoroscopeModal({
                         disabled={isFetching}
                         className={`w-full font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out disabled:opacity-50 ${
                           isBlueTheme
-                            ? "bg-indigo-600 hover:bg-indigo-600/80 text-white"
-                            : "bg-burnt-orange hover:bg-burnt-orange/80 text-white"
+                            ? "bg-neutral-800 hover:bg-neutral-800/80 text-white"
+                            : "liquid-gold-fill text-onyx"
                         }`}
                       >
                         {isFetching ? (
@@ -323,7 +323,7 @@ export default function HoroscopeModal({
                   <div className="text-center py-8">
                     <p
                       className={`text-lg transition-colors duration-500 ease-in-out ${
-                        isBlueTheme ? "text-blue-200/60" : "text-cream/60"
+                        isBlueTheme ? "text-amber-50/60" : "text-cream/60"
                       }`}
                     >
                       The stars are aligning... Please try again in a moment.
@@ -337,12 +337,12 @@ export default function HoroscopeModal({
                   <div className="flex flex-col items-center justify-center py-12">
                     <Loader2
                       className={`w-12 h-12 animate-spin mb-4 transition-colors duration-500 ease-in-out ${
-                        isBlueTheme ? "text-blue-300" : "text-gold"
+                        isBlueTheme ? "text-amber-100" : "text-gold"
                       }`}
                     />
                     <p
                       className={`text-lg transition-colors duration-500 ease-in-out ${
-                        isBlueTheme ? "text-blue-200/80" : "text-cream/80"
+                        isBlueTheme ? "text-amber-50/80" : "text-cream/80"
                       }`}
                     >
                       Channeling romantic energies...
@@ -353,8 +353,8 @@ export default function HoroscopeModal({
                     <div
                       className={`rounded-2xl p-8 border backdrop-blur-sm transition-all duration-500 ease-in-out ${
                         isBlueTheme
-                          ? "bg-gradient-to-br from-indigo-600/30 to-blue-700/30 border-blue-400/30"
-                          : "bg-gradient-to-br from-burnt-orange/20 to-sage/20 border-gold/30"
+                          ? "bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 border-amber-100/30"
+                          : "bg-gradient-to-br from-gold/20 to-sage/20 border-gold/30"
                       }`}
                     >
                       <div className="text-center mb-4">
@@ -363,7 +363,7 @@ export default function HoroscopeModal({
                         </span>
                         <h3
                           className={`text-2xl font-bold mt-2 capitalize transition-colors duration-500 ease-in-out ${
-                            isBlueTheme ? "text-blue-300" : "text-gold"
+                            isBlueTheme ? "text-amber-100" : "text-gold"
                           }`}
                         >
                           {selectedSign}
@@ -371,7 +371,7 @@ export default function HoroscopeModal({
                       </div>
                       <p
                         className={`text-lg leading-relaxed text-center font-medium transition-colors duration-500 ease-in-out ${
-                          isBlueTheme ? "text-blue-100" : "text-cream"
+                          isBlueTheme ? "text-amber-50" : "text-cream"
                         }`}
                       >
                         {personalizeReading(currentReading)}
@@ -383,8 +383,8 @@ export default function HoroscopeModal({
                         disabled={isFetching}
                         className={`w-full font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out disabled:opacity-50 ${
                           isBlueTheme
-                            ? "bg-indigo-600 hover:bg-indigo-600/80 text-white"
-                            : "bg-burnt-orange hover:bg-burnt-orange/80 text-white"
+                            ? "bg-neutral-800 hover:bg-neutral-800/80 text-white"
+                            : "liquid-gold-fill text-onyx"
                         }`}
                       >
                         {isFetching ? (
@@ -400,7 +400,7 @@ export default function HoroscopeModal({
                   <div className="text-center py-8">
                     <p
                       className={`text-lg transition-colors duration-500 ease-in-out ${
-                        isBlueTheme ? "text-blue-200/60" : "text-cream/60"
+                        isBlueTheme ? "text-amber-50/60" : "text-cream/60"
                       }`}
                     >
                       The stars are aligning... Please try again in a moment.
@@ -418,7 +418,7 @@ export default function HoroscopeModal({
               variant="outline"
               className={`w-full border-2 font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out ${
                 isBlueTheme
-                  ? "border-blue-400/50 text-blue-300 hover:bg-blue-400/10"
+                  ? "border-amber-100/50 text-amber-100 hover:bg-amber-100/10"
                   : "border-gold/50 text-gold hover:bg-gold/10"
               }`}
             >

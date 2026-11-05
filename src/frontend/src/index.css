@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,25 +7,25 @@
 @layer base {
   :root {
     --radius: 0.625rem;
-    --background: 0.08 0.02 280;
+    --background: 0.1 0.006 85;
     --foreground: 0.95 0.01 60;
-    --card: 0.12 0.03 280;
+    --card: 0.14 0.008 85;
     --card-foreground: 0.95 0.01 60;
-    --popover: 0.12 0.03 280;
+    --popover: 0.14 0.008 85;
     --popover-foreground: 0.95 0.01 60;
-    --primary: 0.65 0.15 45;
-    --primary-foreground: 0.98 0.01 60;
+    --primary: 0.75 0.15 85;
+    --primary-foreground: 0.12 0.008 85;
     --secondary: 0.55 0.08 140;
     --secondary-foreground: 0.98 0.01 60;
-    --muted: 0.25 0.03 280;
-    --muted-foreground: 0.65 0.02 280;
-    --accent: 0.7 0.18 35;
-    --accent-foreground: 0.98 0.01 60;
+    --muted: 0.24 0.01 85;
+    --muted-foreground: 0.72 0.03 85;
+    --accent: 0.75 0.15 85;
+    --accent-foreground: 0.12 0.008 85;
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
-    --border: 0.65 0.15 45;
-    --input: 0.25 0.03 280;
-    --ring: 0.65 0.15 45;
+    --border: 0.75 0.15 85;
+    --input: 0.24 0.01 85;
+    --ring: 0.75 0.15 85;
     --chart-1: 0.646 0.222 41.116;
     --chart-2: 0.6 0.118 184.704;
     --chart-3: 0.398 0.07 227.392;
@@ -35,33 +35,33 @@
     /* Custom color tokens */
     --gold: 0.75 0.15 85;
     --bright-gold: 0.85 0.18 75;
-    --burnt-orange: 0.55 0.18 35;
+    --onyx: 0.12 0.008 85;
     --cream: 0.92 0.03 75;
     --sage: 0.6 0.08 140;
-    --celestial-blue: 0.6 0.15 240;
-    --bright-blue: 0.7 0.18 230;
+    --celestial-blue: 0.93 0.04 85; /* onyx mode: pearl */
+    --bright-blue: 0.98 0.02 90; /* onyx mode: bright pearl */
   }
 
   .dark {
-    --background: 0.08 0.02 280;
+    --background: 0.1 0.006 85;
     --foreground: 0.95 0.01 60;
-    --card: 0.12 0.03 280;
+    --card: 0.14 0.008 85;
     --card-foreground: 0.95 0.01 60;
-    --popover: 0.15 0.03 280;
+    --popover: 0.15 0.008 85;
     --popover-foreground: 0.95 0.01 60;
-    --primary: 0.65 0.15 45;
-    --primary-foreground: 0.98 0.01 60;
+    --primary: 0.75 0.15 85;
+    --primary-foreground: 0.12 0.008 85;
     --secondary: 0.55 0.08 140;
     --secondary-foreground: 0.98 0.01 60;
-    --muted: 0.25 0.03 280;
-    --muted-foreground: 0.65 0.02 280;
-    --accent: 0.7 0.18 35;
-    --accent-foreground: 0.98 0.01 60;
+    --muted: 0.24 0.01 85;
+    --muted-foreground: 0.72 0.03 85;
+    --accent: 0.75 0.15 85;
+    --accent-foreground: 0.12 0.008 85;
     --destructive: 0.704 0.191 22.216;
     --destructive-foreground: 0.205 0 0;
-    --border: 0.65 0.15 45;
-    --input: 0.25 0.03 280;
-    --ring: 0.65 0.15 45;
+    --border: 0.75 0.15 85;
+    --input: 0.24 0.01 85;
+    --ring: 0.75 0.15 85;
     --chart-1: 0.488 0.243 264.376;
     --chart-2: 0.696 0.17 162.48;
     --chart-3: 0.769 0.188 70.08;
@@ -75,8 +75,15 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Cinzel", serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 16pt;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", serif;
   }
 }
 
@@ -87,10 +94,6 @@
 
   .text-bright-gold {
     color: oklch(var(--bright-gold));
-  }
-
-  .text-burnt-orange {
-    color: oklch(var(--burnt-orange));
   }
 
   .text-cream {
@@ -105,10 +108,6 @@
     background-color: oklch(var(--gold));
   }
 
-  .bg-burnt-orange {
-    background-color: oklch(var(--burnt-orange));
-  }
-
   .bg-cream {
     background-color: oklch(var(--cream));
   }
@@ -119,10 +118,6 @@
 
   .border-gold {
     border-color: oklch(var(--gold));
-  }
-
-  .border-burnt-orange {
-    border-color: oklch(var(--burnt-orange));
   }
 
   .border-cream {
@@ -138,7 +133,7 @@
 .moondress-watermark {
   opacity: 0.2;
   filter: drop-shadow(0 0 30px oklch(var(--gold) / 0.3))
-    drop-shadow(0 0 60px oklch(var(--burnt-orange) / 0.2));
+    drop-shadow(0 0 60px oklch(var(--gold) / 0.2));
   transition: filter 0.5s ease-in-out;
 }
 
@@ -421,6 +416,75 @@
 
 /* Dialog Overlay */
 [data-radix-dialog-overlay] {
-  background: oklch(0.08 0.02 280 / 0.9) !important;
+  background: oklch(0.06 0.005 85 / 0.9) !important;
   backdrop-filter: blur(8px);
+}
+
+/* Liquid gold floating button */
+@keyframes liquidFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.liquid-gold-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #1a1408;
+  background: linear-gradient(120deg, #8a6a1f, #f5d77a, #fff6d5, #d4a937, #8a6a1f);
+  background-size: 300% 300%;
+  animation: liquidFlow 6s ease-in-out infinite, float 4s ease-in-out infinite;
+  box-shadow: 0 0 25px rgba(218, 165, 32, 0.55), inset 0 2px 6px rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.liquid-gold-button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 45px rgba(218, 165, 32, 0.85), inset 0 2px 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Onyx mode: pearl and champagne liquid */
+.liquid-gold-button.liquid-blue {
+  color: #14120d;
+  background: linear-gradient(120deg, #8c7f63, #f5ead2, #ffffff, #d9c9a3, #8c7f63);
+  background-size: 300% 300%;
+  box-shadow: 0 0 25px rgba(245, 232, 199, 0.5), inset 0 2px 6px rgba(255, 255, 255, 0.7);
+}
+
+/* Liquid gold fill for standard buttons */
+.liquid-gold-fill {
+  background: linear-gradient(120deg, #8a6a1f, #f5d77a, #fff6d5, #d4a937, #8a6a1f);
+  background-size: 300% 300%;
+  animation: liquidFlow 6s ease-in-out infinite;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+.liquid-gold-fill:hover {
+  filter: brightness(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-gold-fill { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-gold-button { animation: none; }
+}
+
+/* Gold star cursor: hide the system arrow while the star is active */
+@media (pointer: fine) {
+  body.star-cursor-active,
+  body.star-cursor-active * {
+    cursor: none !important;
+  }
+
+  body.star-cursor-active input,
+  body.star-cursor-active textarea {
+    cursor: text !important;
+  }
 }

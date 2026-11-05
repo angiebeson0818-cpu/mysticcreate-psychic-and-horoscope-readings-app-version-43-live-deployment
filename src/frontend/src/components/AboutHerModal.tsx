@@ -22,7 +22,7 @@ export default function AboutHerModal({
       <DialogContent
         className={`max-w-2xl border-2 backdrop-blur-xl transition-all duration-500 ease-in-out ${
           isBlueTheme
-            ? "bg-gradient-to-br from-blue-900/95 via-indigo-800/95 to-blue-900/95 border-blue-400/50 shadow-[0_0_60px_rgba(96,165,250,0.4)]"
+            ? "bg-gradient-to-br from-neutral-950/95 via-neutral-900/95 to-neutral-950/95 border-amber-100/50 shadow-[0_0_60px_rgba(245,232,199,0.4)]"
             : "bg-gradient-to-br from-background/95 via-card/95 to-background/95 border-gold/50 shadow-[0_0_60px_rgba(218,165,32,0.4)]"
         }`}
       >
@@ -30,7 +30,7 @@ export default function AboutHerModal({
           <DialogTitle
             className={`text-3xl md:text-4xl font-bold text-center gentle-float transition-all duration-500 ease-in-out ${
               isBlueTheme
-                ? "text-blue-300 glowing-title-blue"
+                ? "text-amber-100 glowing-title-blue"
                 : "text-bright-gold glowing-title"
             }`}
           >
@@ -42,24 +42,24 @@ export default function AboutHerModal({
           {/* Decorative stars */}
           <div
             className={`absolute top-4 left-4 w-2 h-2 rounded-full animate-pulse transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "bg-blue-300" : "bg-gold"
+              isBlueTheme ? "bg-amber-100" : "bg-gold"
             }`}
           />
           <div
             className={`absolute top-8 right-6 w-2 h-2 rounded-full animate-pulse transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "bg-blue-300" : "bg-gold"
+              isBlueTheme ? "bg-amber-100" : "bg-gold"
             }`}
             style={{ animationDelay: "0.5s" }}
           />
           <div
             className={`absolute bottom-6 left-8 w-2 h-2 rounded-full animate-pulse transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "bg-blue-300" : "bg-gold"
+              isBlueTheme ? "bg-amber-100" : "bg-gold"
             }`}
             style={{ animationDelay: "1s" }}
           />
           <div
             className={`absolute bottom-4 right-4 w-2 h-2 rounded-full animate-pulse transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "bg-blue-300" : "bg-gold"
+              isBlueTheme ? "bg-amber-100" : "bg-gold"
             }`}
             style={{ animationDelay: "1.5s" }}
           />
@@ -68,13 +68,13 @@ export default function AboutHerModal({
           <div
             className={`relative border-2 rounded-lg p-6 md:p-8 transition-all duration-500 ease-in-out ${
               isBlueTheme
-                ? "bg-gradient-to-br from-indigo-800/60 to-blue-900/60 border-blue-400/40 shadow-[0_0_40px_rgba(96,165,250,0.3)]"
+                ? "bg-gradient-to-br from-neutral-900/60 to-neutral-950/60 border-amber-100/40 shadow-[0_0_40px_rgba(245,232,199,0.3)]"
                 : "bg-gradient-to-br from-card/60 to-background/60 border-gold/40 shadow-[0_0_40px_rgba(218,165,32,0.3)]"
             }`}
           >
             <p
               className={`text-lg md:text-xl leading-relaxed text-center space-y-4 transition-colors duration-500 ease-in-out ${
-                isBlueTheme ? "text-blue-100" : "text-cream"
+                isBlueTheme ? "text-amber-50" : "text-cream"
               }`}
             >
               <span
@@ -98,7 +98,7 @@ export default function AboutHerModal({
               <span
                 className={`block font-bold text-2xl mt-4 transition-all duration-500 ease-in-out ${
                   isBlueTheme
-                    ? "text-blue-300 glowing-title-blue"
+                    ? "text-amber-100 glowing-title-blue"
                     : "text-bright-gold glowing-title"
                 }`}
               >
@@ -115,7 +115,7 @@ export default function AboutHerModal({
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`underline font-semibold transition-colors duration-500 ease-in-out hover:opacity-80 ${
-                    isBlueTheme ? "text-blue-300" : "text-bright-gold"
+                    isBlueTheme ? "text-amber-100" : "text-bright-gold"
                   }`}
                 >
                   Visit angiecreates.pro
@@ -130,14 +130,14 @@ export default function AboutHerModal({
             onClick={onClose}
             className={`absolute -top-3 -right-3 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-500 ease-in-out hover:scale-110 ${
               isBlueTheme
-                ? "bg-blue-400/20 hover:bg-blue-400/40 border-blue-400/50 shadow-[0_0_20px_rgba(96,165,250,0.4)]"
+                ? "bg-amber-100/20 hover:bg-amber-100/40 border-amber-100/50 shadow-[0_0_20px_rgba(245,232,199,0.4)]"
                 : "bg-gold/20 hover:bg-gold/40 border-gold/50 shadow-[0_0_20px_rgba(218,165,32,0.4)]"
             }`}
             aria-label="Close"
           >
             <X
               className={`w-5 h-5 transition-colors duration-500 ease-in-out ${
-                isBlueTheme ? "text-blue-300" : "text-gold"
+                isBlueTheme ? "text-amber-100" : "text-gold"
               }`}
             />
           </button>

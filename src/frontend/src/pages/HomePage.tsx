@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HoroscopeModal from "@/components/HoroscopeModal";
 import HoroscopeReadingCard from "@/components/HoroscopeReadingCard";
+import MysticFeatures from "@/components/MysticFeatures";
 import PsychicReadingCard from "@/components/PsychicReadingCard";
 import PsychicReadingModal from "@/components/PsychicReadingModal";
 import ZenMusicPlayer from "@/components/ZenMusicPlayer";
@@ -45,7 +46,7 @@ export default function HomePage() {
         <div
           className={`absolute inset-0 transition-all duration-500 ease-in-out ${
             isBlueTheme
-              ? "bg-gradient-to-b from-blue-900/60 via-blue-800/70 to-indigo-900/80"
+              ? "bg-gradient-to-b from-neutral-950/60 via-neutral-900/70 to-neutral-950/80"
               : "bg-gradient-to-b from-background/40 via-background/60 to-background/80"
           }`}
         />
@@ -93,7 +94,7 @@ export default function HomePage() {
         type="button"
         onClick={toggleCelestialTheme}
         className="fixed bottom-24 right-6 z-50 group cursor-pointer"
-        aria-label="Toggle celestial theme"
+        aria-label="Switch between gold and onyx mode"
       >
         <div
           className={`w-12 h-12 rounded-full transition-all duration-500 ease-in-out ${
@@ -102,7 +103,7 @@ export default function HomePage() {
         >
           <Moon
             className={`w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "text-blue-200" : "text-yellow-200"
+              isBlueTheme ? "text-amber-50" : "text-yellow-200"
             }`}
           />
         </div>
@@ -118,7 +119,7 @@ export default function HomePage() {
             <h1
               className={`text-5xl md:text-7xl font-bold mb-4 transition-all duration-500 ease-in-out ${
                 isBlueTheme
-                  ? "text-blue-300 glowing-title-blue"
+                  ? "text-amber-100 glowing-title-blue"
                   : "text-bright-gold glowing-title"
               }`}
             >
@@ -126,10 +127,18 @@ export default function HomePage() {
             </h1>
             <p
               className={`text-2xl md:text-3xl font-semibold gentle-float-delayed transition-colors duration-500 ease-in-out ${
-                isBlueTheme ? "text-blue-200" : "text-cream"
+                isBlueTheme ? "text-amber-50" : "text-cream"
               }`}
             >
               Your Path, Unveiled
+            </p>
+            <p
+              className={`mt-4 text-base md:text-lg transition-colors duration-500 ease-in-out ${
+                isBlueTheme ? "text-amber-50/80" : "text-cream/80"
+              }`}
+            >
+              Birth chart insights, love compatibility, soulmate sketch and AI
+              guidance.
             </p>
           </div>
 
@@ -147,6 +156,12 @@ export default function HomePage() {
               isBlueTheme={isBlueTheme}
             />
           </div>
+
+          {/* Gemini add-ons: features, Soulmate Sketch, subscription info */}
+          <MysticFeatures
+            isBlueTheme={isBlueTheme}
+            onStartReading={() => setIsPsychicModalOpen(true)}
+          />
         </main>
 
         <Footer isBlueTheme={isBlueTheme} />

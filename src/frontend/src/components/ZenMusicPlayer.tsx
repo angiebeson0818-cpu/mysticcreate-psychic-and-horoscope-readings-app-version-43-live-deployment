@@ -63,7 +63,7 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
             animate-pulse pointer-events-none
             ${
               isBlueTheme
-                ? "bg-blue-900/90 text-blue-200 border border-blue-400/40"
+                ? "bg-neutral-950/90 text-amber-50 border border-amber-100/40"
                 : "bg-amber-900/90 text-yellow-200 border border-yellow-500/40"
             }
           `}
@@ -85,21 +85,21 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
         <Music
           className={`
             w-3 h-3 absolute top-1 right-1 opacity-60
-            ${isBlueTheme ? "text-blue-300" : "text-yellow-300"}
+            ${isBlueTheme ? "text-amber-100" : "text-yellow-300"}
           `}
         />
         {isPlaying ? (
           <Pause
             className={`
               w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              ${isBlueTheme ? "text-blue-200" : "text-yellow-200"}
+              ${isBlueTheme ? "text-amber-50" : "text-yellow-200"}
             `}
           />
         ) : (
           <Play
             className={`
               w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              ${isBlueTheme ? "text-blue-200" : "text-yellow-200"}
+              ${isBlueTheme ? "text-amber-50" : "text-yellow-200"}
             `}
           />
         )}

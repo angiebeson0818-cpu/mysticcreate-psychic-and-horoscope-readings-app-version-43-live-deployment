@@ -76,14 +76,14 @@ export default function PsychicReadingModal({
       <DialogContent
         className={`max-w-2xl border-2 backdrop-blur-xl transition-all duration-500 ease-in-out ${
           isBlueTheme
-            ? "bg-gradient-to-br from-blue-900/90 via-indigo-800/90 to-blue-900/90 border-blue-400/50"
+            ? "bg-gradient-to-br from-neutral-950/90 via-neutral-900/90 to-neutral-950/90 border-amber-100/50"
             : "bg-gradient-to-br from-background via-sage/10 to-background border-gold/50"
         }`}
       >
         <DialogHeader>
           <DialogTitle
             className={`text-3xl font-bold text-center flex items-center justify-center gap-2 transition-colors duration-500 ease-in-out ${
-              isBlueTheme ? "text-blue-300" : "text-gold"
+              isBlueTheme ? "text-amber-100" : "text-gold"
             }`}
           >
             <Sparkles className="w-8 h-8" />
@@ -108,7 +108,7 @@ export default function PsychicReadingModal({
                 <Label
                   htmlFor="userName"
                   className={`text-lg transition-colors duration-500 ease-in-out ${
-                    isBlueTheme ? "text-blue-200" : "text-cream"
+                    isBlueTheme ? "text-amber-50" : "text-cream"
                   }`}
                 >
                   What is your name, seeker? (Optional)
@@ -122,7 +122,7 @@ export default function PsychicReadingModal({
                   onKeyDown={(e) => e.key === "Enter" && handleStartSession()}
                   className={`text-lg py-6 rounded-xl transition-all duration-500 ease-in-out ${
                     isBlueTheme
-                      ? "bg-indigo-900/30 border-2 border-blue-400/40 text-blue-100 placeholder:text-blue-300/50"
+                      ? "bg-neutral-950/30 border-2 border-amber-100/40 text-amber-50 placeholder:text-amber-100/50"
                       : "bg-sage/20 border-2 border-gold/40 text-cream placeholder:text-cream/50"
                   }`}
                 />
@@ -131,8 +131,8 @@ export default function PsychicReadingModal({
                 onClick={handleStartSession}
                 className={`w-full font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out ${
                   isBlueTheme
-                    ? "bg-indigo-600 hover:bg-indigo-600/80 text-white"
-                    : "bg-burnt-orange hover:bg-burnt-orange/80 text-white"
+                    ? "bg-neutral-800 hover:bg-neutral-800/80 text-white"
+                    : "liquid-gold-fill text-onyx"
                 }`}
               >
                 <Sparkles className="w-5 h-5 mr-2" />
@@ -146,12 +146,12 @@ export default function PsychicReadingModal({
                 <div className="flex flex-col items-center justify-center py-12">
                   <Loader2
                     className={`w-12 h-12 animate-spin mb-4 transition-colors duration-500 ease-in-out ${
-                      isBlueTheme ? "text-blue-300" : "text-gold"
+                      isBlueTheme ? "text-amber-100" : "text-gold"
                     }`}
                   />
                   <p
                     className={`text-lg transition-colors duration-500 ease-in-out ${
-                      isBlueTheme ? "text-blue-200/80" : "text-cream/80"
+                      isBlueTheme ? "text-amber-50/80" : "text-cream/80"
                     }`}
                   >
                     Channeling cosmic energies...
@@ -161,13 +161,13 @@ export default function PsychicReadingModal({
                 <div
                   className={`rounded-2xl p-8 border backdrop-blur-sm transition-all duration-500 ease-in-out ${
                     isBlueTheme
-                      ? "bg-gradient-to-br from-indigo-600/30 to-blue-700/30 border-blue-400/30"
-                      : "bg-gradient-to-br from-sage/20 to-burnt-orange/20 border-gold/30"
+                      ? "bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 border-amber-100/30"
+                      : "bg-gradient-to-br from-sage/20 to-gold/20 border-gold/30"
                   }`}
                 >
                   <p
                     className={`text-lg leading-relaxed text-center font-medium transition-colors duration-500 ease-in-out ${
-                      isBlueTheme ? "text-blue-100" : "text-cream"
+                      isBlueTheme ? "text-amber-50" : "text-cream"
                     }`}
                   >
                     {displayedReading ||
@@ -183,8 +183,8 @@ export default function PsychicReadingModal({
                   disabled={isFetching}
                   className={`flex-1 font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out disabled:opacity-50 ${
                     isBlueTheme
-                      ? "bg-indigo-600 hover:bg-indigo-600/80 text-white"
-                      : "bg-burnt-orange hover:bg-burnt-orange/80 text-white"
+                      ? "bg-neutral-800 hover:bg-neutral-800/80 text-white"
+                      : "liquid-gold-fill text-onyx"
                   }`}
                 >
                   {isFetching ? (
@@ -199,7 +199,7 @@ export default function PsychicReadingModal({
                   variant="outline"
                   className={`flex-1 border-2 font-bold py-6 text-lg rounded-xl transition-all duration-500 ease-in-out ${
                     isBlueTheme
-                      ? "border-blue-400/50 text-blue-300 hover:bg-blue-400/10"
+                      ? "border-amber-100/50 text-amber-100 hover:bg-amber-100/10"
                       : "border-gold/50 text-gold hover:bg-gold/10"
                   }`}
                 >
