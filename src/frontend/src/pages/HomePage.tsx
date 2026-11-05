@@ -1,3 +1,4 @@
+import AccessibilityMenu from "@/components/AccessibilityMenu";
 import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -36,8 +37,11 @@ export default function HomePage() {
       {/* Custom Cursor */}
       <CustomCursor />
 
+      {/* Accessibility settings (bottom left) */}
+      <AccessibilityMenu isBlueTheme={isBlueTheme} />
+
       {/* Celestial Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="decorative-bg fixed inset-0 z-0">
         <img
           src="/assets/generated/celestial-background.dim_1920x1080.jpg"
           alt=""
@@ -53,7 +57,7 @@ export default function HomePage() {
       </div>
 
       {/* Moondress Watermark Overlay */}
-      <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none moondress-watermark">
+      <div className="decorative-bg fixed inset-0 z-0 flex items-center justify-center pointer-events-none moondress-watermark">
         <img
           src="/assets/uploads/ang_sun_moondress-1-2-1.jpg"
           alt=""
@@ -62,11 +66,11 @@ export default function HomePage() {
       </div>
 
       {/* Logo Watermark */}
-      <div className="fixed inset-0 z-0 flex items-center justify-center opacity-5 pointer-events-none">
+      <div className="decorative-bg fixed inset-0 z-0 flex items-center justify-center opacity-5 pointer-events-none">
         <img
-          src="/assets/1764851081703.jpg"
+          src="/assets/brand/mysticcreate-badge.webp"
           alt=""
-          className="w-[800px] h-auto object-contain"
+          className="w-[700px] max-w-[90vw] h-auto object-contain"
         />
       </div>
 
@@ -116,6 +120,25 @@ export default function HomePage() {
         <main className="container mx-auto px-4 py-12 min-h-[calc(100vh-200px)]">
           {/* Hero Title */}
           <div className="text-center mb-16 gentle-float">
+            <a
+              href="https://angieCREATEs.PRO"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="mysticCREATE by angieCREATEs. Visit angieCREATEs.PRO"
+              className="inline-block mb-6 rounded-full transition-transform duration-500 hover:scale-105"
+            >
+              <img
+                src="/assets/brand/mysticcreate-badge.webp"
+                alt="mysticCREATE logo"
+                width={176}
+                height={176}
+                className={`w-36 h-36 md:w-44 md:h-44 rounded-full ${
+                  isBlueTheme
+                    ? "shadow-[0_0_45px_rgba(245,232,199,0.45)]"
+                    : "shadow-[0_0_45px_rgba(218,165,32,0.6)]"
+                }`}
+              />
+            </a>
             <h1
               className={`text-5xl md:text-7xl font-bold mb-4 transition-all duration-500 ease-in-out ${
                 isBlueTheme

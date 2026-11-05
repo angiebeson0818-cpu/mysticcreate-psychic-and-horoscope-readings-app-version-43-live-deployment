@@ -76,7 +76,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Montserrat", sans-serif;
-    font-size: 16pt;
+    font-size: 1.333rem;
   }
 
   h1,
@@ -487,4 +487,64 @@
   body.star-cursor-active textarea {
     cursor: text !important;
   }
+}
+
+/* ---------- Accessibility settings (set by AccessibilityMenu) ---------- */
+html.a11y-text-lg {
+  font-size: 112.5%;
+}
+
+html.a11y-text-xl {
+  font-size: 125%;
+}
+
+html.a11y-contrast .decorative-bg,
+html.a11y-contrast .stars-container {
+  display: none !important;
+}
+
+html.a11y-contrast body {
+  background: #000 !important;
+}
+
+html.a11y-contrast * {
+  text-shadow: none !important;
+}
+
+html.a11y-contrast p,
+html.a11y-contrast li,
+html.a11y-contrast span,
+html.a11y-contrast label {
+  color: #fff8e7 !important;
+}
+
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html.a11y-spacing body {
+  letter-spacing: 0.04em;
+  word-spacing: 0.12em;
+  line-height: 1.8;
+}
+
+html.a11y-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+html.a11y-standard-cursor .star-cursor-canvas,
+html.a11y-reduce-motion .star-cursor-canvas {
+  display: none !important;
+}
+
+html.a11y-standard-cursor body.star-cursor-active,
+html.a11y-standard-cursor body.star-cursor-active *,
+html.a11y-reduce-motion body.star-cursor-active,
+html.a11y-reduce-motion body.star-cursor-active * {
+  cursor: auto !important;
 }
