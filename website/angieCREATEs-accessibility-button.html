@@ -1,0 +1,277 @@
+<!-- ============================================================
+     angieCREATEs Liquid Gold Accessibility Button
+     Paste this whole snippet into your site's footer
+     (WPCode "Footer" snippet, or Elementor > Custom Code > Body End).
+     It needs no plugin, no images, and no outside files.
+     ============================================================ -->
+<script>
+(() => {
+  // ---------- Settings you can change ----------
+  const POSITION = "left";   // "left" or "right"
+  const BOTTOM = 24;         // distance from the bottom edge, in pixels
+  const SIDE = 24;           // distance from the side edge, in pixels
+  // ----------------------------------------------
+
+  if (window.__angieA11yLoaded) return;
+  window.__angieA11yLoaded = true;
+
+  const KEY = "angiecreates-a11y";
+  const DEFAULTS = { text: 0, contrast: false, motion: false, spacing: false, font: false, links: false };
+  const load = () => {
+    try { return { ...DEFAULTS, ...JSON.parse(localStorage.getItem(KEY) || "{}") }; }
+    catch { return { ...DEFAULTS }; }
+  };
+  const save = (s) => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
+
+  // ---------- Page-wide effects ----------
+  const globalCss = `
+    html.acb-text-1 body { zoom: 1.12; }
+    html.acb-text-2 body { zoom: 1.25; }
+    html.acb-contrast body, html.acb-contrast body *:not(img):not(video):not(svg):not(svg *):not(angie-a11y) {
+      background-color: #000 !important; background-image: none !important;
+      color: #fff8e7 !important; border-color: #d4af37 !important; text-shadow: none !important; box-shadow: none !important;
+    }
+    html.acb-contrast body a, html.acb-contrast body a * { color: #f5d77a !important; }
+    html.acb-motion *, html.acb-motion *::before, html.acb-motion *::after {
+      animation: none !important; transition: none !important; scroll-behavior: auto !important;
+    }
+    html.acb-spacing body, html.acb-spacing body * {
+      letter-spacing: 0.04em !important; word-spacing: 0.12em !important; line-height: 1.8 !important;
+    }
+    html.acb-font body, html.acb-font body *:not(i):not([class*="icon"]):not([class*="eicon"]):not([class*="fa-"]) {
+      font-family: Verdana, "Segoe UI", system-ui, sans-serif !important;
+    }
+    html.acb-links body a { text-decoration: underline !important; text-underline-offset: 3px !important; }
+  `;
+  const style = document.createElement("style");
+  style.id = "angie-a11y-global";
+  style.textContent = globalCss;
+  document.head.appendChild(style);
+
+  const apply = (s) => {
+    const c = document.documentElement.classList;
+    c.toggle("acb-text-1", s.text === 1);
+    c.toggle("acb-text-2", s.text === 2);
+    c.toggle("acb-contrast", s.contrast);
+    c.toggle("acb-motion", s.motion);
+    c.toggle("acb-spacing", s.spacing);
+    c.toggle("acb-font", s.font);
+    c.toggle("acb-links", s.links);
+    host.toggleAttribute("data-still", s.motion);
+  };
+
+  // ---------- The button and panel (kept in their own bubble so the theme can't restyle them) ----------
+  const host = document.createElement("angie-a11y");
+  host.style.cssText = `position:fixed;bottom:${BOTTOM}px;${POSITION}:${SIDE}px;z-index:2147483000;`;
+  const root = host.attachShadow({ mode: "open" });
+  const side = POSITION === "right" ? "right" : "left";
+
+  root.innerHTML = `
+  <style>
+    :host { all: initial; font-family: Montserrat, "Plus Jakarta Sans", system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    .wrap { position: relative; width: 76px; height: 76px; display: grid; place-items: center; }
+
+    /* Shimmering ribbon that circles the orb */
+    .ribbon { position: absolute; inset: 0; animation: spin 7s linear infinite; pointer-events: none; }
+    .ribbon circle { fill: none; stroke: url(#acbRibbon); stroke-width: 3.2; stroke-linecap: round;
+      stroke-dasharray: 70 140; filter: drop-shadow(0 0 3px rgba(255, 215, 120, .9)); }
+    .ribbon .thin { stroke-width: 1.2; stroke-dasharray: 18 200; opacity: .8; }
+
+    /* Twinkling sparkles */
+    .spark { position: absolute; width: 8px; height: 8px; pointer-events: none;
+      background: radial-gradient(circle, #fff 0 18%, rgba(255,230,160,.9) 30%, transparent 70%);
+      clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+      animation: twinkle 2.6s ease-in-out infinite; }
+    .s1 { top: 2px; right: 10px; } .s2 { bottom: 6px; left: 4px; animation-delay: .9s; width: 6px; height: 6px; }
+    .s3 { top: 18px; left: -2px; animation-delay: 1.7s; width: 5px; height: 5px; }
+
+    /* The liquid gold orb */
+    .orb { position: relative; width: 58px; height: 58px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+      overflow: hidden; isolation: isolate;
+      background: radial-gradient(circle at 32% 28%, #fffbe6 0%, #f9e39a 16%, #e2bd52 42%, #b08a22 70%, #6e5210 100%);
+      box-shadow: 0 0 0 1.5px rgba(255, 238, 180, .55) inset, 0 6px 18px rgba(0, 0, 0, .55), 0 0 26px rgba(232, 190, 80, .55);
+      animation: bob 4.5s ease-in-out infinite; transition: transform .35s cubic-bezier(.2,.9,.3,1.3), box-shadow .35s; }
+    .orb:hover { transform: scale(1.09); box-shadow: 0 0 0 1.5px rgba(255,238,180,.75) inset, 0 8px 22px rgba(0,0,0,.55), 0 0 40px rgba(240,200,90,.85); }
+    .orb:focus-visible { outline: 3px solid #fff8e7; outline-offset: 4px; }
+
+    /* Molten swirl */
+    .orb::before { content: ""; position: absolute; inset: -30%; z-index: -1;
+      background: conic-gradient(from 0deg, rgba(255,246,213,.0), rgba(255,246,213,.55), rgba(176,138,34,.0), rgba(255,225,140,.5), rgba(255,246,213,.0));
+      filter: blur(6px); animation: spin 6s linear infinite; mix-blend-mode: soft-light; }
+
+    /* Liquid waves */
+    .wave { position: absolute; left: -50%; width: 200%; height: 100%; z-index: -1; }
+    .wave svg { width: 100%; height: 100%; display: block; }
+    .w1 { top: 46%; animation: slosh 3.2s ease-in-out infinite; }
+    .w2 { top: 54%; animation: slosh 4.1s ease-in-out infinite reverse; opacity: .85; }
+
+    /* Glass highlight */
+    .gloss { position: absolute; top: 7px; left: 11px; width: 24px; height: 13px; border-radius: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0)); transform: rotate(-22deg); filter: blur(.4px); }
+
+    .icon { position: relative; width: 28px; height: 28px; color: #14110a; filter: drop-shadow(0 1px 0 rgba(255,245,210,.6)); }
+
+    /* Water ripple on hover and tap */
+    .ripple { position: absolute; width: 58px; height: 58px; border-radius: 50%; border: 2px solid rgba(245, 215, 122, .9);
+      pointer-events: none; opacity: 0; }
+    .wrap:hover .ripple.r1 { animation: ripple 1.6s ease-out infinite; }
+    .wrap:hover .ripple.r2 { animation: ripple 1.6s ease-out .55s infinite; }
+    .splash { animation: ripple .9s ease-out 1 !important; }
+
+    .tip { position: absolute; ${side}: 82px; bottom: 22px; white-space: nowrap; pointer-events: none;
+      padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .03em;
+      color: #f5d77a; background: rgba(11,11,13,.92); border: 1px solid rgba(212,175,55,.6);
+      opacity: 0; transform: translateY(4px); transition: opacity .25s, transform .25s; }
+    .wrap:hover .tip, .orb:focus-visible ~ .tip { opacity: 1; transform: none; }
+    .orb[aria-expanded="true"] ~ .tip { opacity: 0 !important; }
+
+    /* Panel */
+    .panel { position: absolute; bottom: 86px; ${side}: 0; width: 304px; max-width: calc(100vw - 32px);
+      padding: 18px; border-radius: 22px; color: #f6edd9;
+      background: linear-gradient(160deg, #18160f, #08080a);
+      box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 0 1px rgba(212,175,55,.35) inset;
+      transform-origin: bottom ${side}; animation: rise .35s cubic-bezier(.2,.9,.3,1.2); }
+    .panel::before { content: ""; position: absolute; inset: 0; border-radius: 22px; padding: 1.5px; pointer-events: none;
+      background: linear-gradient(120deg, #8a6a1f, #f5d77a, #fff6d5, #d4af37, #8a6a1f); background-size: 300% 300%;
+      animation: flow 6s ease-in-out infinite;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; }
+    .panel[hidden] { display: none; }
+    .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    h2 { margin: 0; font: 700 21px/1.1 "Playfair Display", Georgia, serif; letter-spacing: .01em;
+      background: linear-gradient(90deg, #d4af37, #fff6d5, #d4af37); background-size: 200% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 5s linear infinite; }
+    .close { all: unset; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #f6edd9; }
+    .close:hover { background: rgba(245,215,122,.12); }
+    .close:focus-visible, .seg button:focus-visible, .row:focus-visible, .reset:focus-visible { outline: 2px solid #fff8e7; outline-offset: 2px; }
+    .label { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: rgba(246,237,217,.7); margin: 4px 2px 8px; }
+    .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+    .seg button { all: unset; cursor: pointer; text-align: center; padding: 8px 4px; border-radius: 12px; font-size: 13px; font-weight: 600;
+      border: 1px solid rgba(246,237,217,.25); color: #f6edd9; }
+    .seg button[aria-pressed="true"] { color: #14110a; border-color: transparent; }
+    .panel .gold { background: linear-gradient(120deg, #8a6a1f, #f5d77a, #fff6d5, #d4af37, #8a6a1f); background-size: 300% 300%; animation: flow 6s ease-in-out infinite; }
+    .rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+    .row { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%;
+      padding: 9px 8px; border-radius: 12px; font-size: 14px; color: #f6edd9; box-sizing: border-box; }
+    .row:hover { background: rgba(245,215,122,.08); }
+    .row span { display: flex; align-items: center; gap: 10px; }
+    .row svg { width: 18px; height: 18px; color: #e6c35c; flex: none; }
+    .tog { position: relative; width: 40px; height: 22px; border-radius: 999px; background: rgba(246,237,217,.18); flex: none; }
+    .tog::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #f6edd9;
+      transition: left .25s cubic-bezier(.2,.9,.3,1.3); }
+    .row[aria-checked="true"] .tog { background: linear-gradient(120deg, #8a6a1f, #f5d77a, #fff6d5, #d4af37); background-size: 300% 300%; animation: flow 6s ease-in-out infinite; }
+    .row[aria-checked="true"] .tog::after { left: 21px; background: #14110a; }
+    .reset { all: unset; cursor: pointer; display: block; text-align: center; margin-top: 12px; padding: 10px; border-radius: 999px;
+      font-size: 13px; font-weight: 700; letter-spacing: .04em; color: #14110a; box-sizing: border-box; width: 100%; }
+    .credit { margin-top: 10px; text-align: center; font-size: 11px; color: rgba(246,237,217,.5); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -4px; } }
+    @keyframes slosh { 0%,100% { transform: translateX(0) rotate(-2deg); } 50% { transform: translateX(-25%) rotate(2deg); } }
+    @keyframes ripple { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+    @keyframes twinkle { 0%,100% { opacity: .15; transform: scale(.6) rotate(0); } 50% { opacity: 1; transform: scale(1.15) rotate(45deg); } }
+    @keyframes flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px) scale(.96); } to { opacity: 1; transform: none; } }
+
+    :host([data-still]) *, :host([data-still]) *::before, :host([data-still]) *::after { animation: none !important; transition: none !important; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+  </style>
+
+  <div class="wrap">
+    <svg class="ribbon" viewBox="0 0 76 76" aria-hidden="true">
+      <defs>
+        <linearGradient id="acbRibbon" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#8a6a1f"/><stop offset=".45" stop-color="#fff6d5"/><stop offset="1" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="38" cy="38" r="35"/>
+      <circle class="thin" cx="38" cy="38" r="35" transform="rotate(160 38 38)"/>
+    </svg>
+    <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i>
+    <span class="ripple r1"></span><span class="ripple r2"></span><span class="ripple tapr"></span>
+
+    <button class="orb" type="button" aria-label="Accessibility settings" aria-expanded="false" aria-controls="acb-panel">
+      <span class="wave w1"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 20 Q25 4 50 20 T100 20 T150 20 T200 20 V60 H0Z" fill="rgba(160,120,26,.6)"/><path d="M0 20 Q25 4 50 20 T100 20 T150 20 T200 20" fill="none" stroke="rgba(255,246,213,.85)" stroke-width="1.6"/></svg></span>
+      <span class="wave w2"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 18 Q25 32 50 18 T100 18 T150 18 T200 18 V60 H0Z" fill="rgba(110,82,16,.55)"/></svg></span>
+      <span class="gloss"></span>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="4.2" r="1.9" fill="currentColor" stroke="none"/>
+        <path d="M5 8.5c2.3.7 4.6 1 7 1s4.7-.3 7-1"/><path d="M12 9.5v5"/><path d="M12 14.5l-3.2 6"/><path d="M12 14.5l3.2 6"/>
+      </svg>
+    </button>
+    <span class="tip">Accessibility</span>
+
+    <section class="panel" id="acb-panel" aria-label="Accessibility settings" hidden>
+      <div class="head">
+        <h2>Accessibility</h2>
+        <button class="close" type="button" aria-label="Close accessibility settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="label" id="acb-size">Text size</div>
+      <div class="seg" role="group" aria-labelledby="acb-size">
+        <button type="button" data-text="0">Standard</button>
+        <button type="button" data-text="1">Large</button>
+        <button type="button" data-text="2">Larger</button>
+      </div>
+      <ul class="rows">
+        <li><button class="row" type="button" role="switch" data-key="contrast"><span>${ico("contrast")}High contrast</span><i class="tog"></i></button></li>
+        <li><button class="row" type="button" role="switch" data-key="motion"><span>${ico("pause")}Pause animations</span><i class="tog"></i></button></li>
+        <li><button class="row" type="button" role="switch" data-key="spacing"><span>${ico("spacing")}Easier reading spacing</span><i class="tog"></i></button></li>
+        <li><button class="row" type="button" role="switch" data-key="font"><span>${ico("font")}Readable font</span><i class="tog"></i></button></li>
+        <li><button class="row" type="button" role="switch" data-key="links"><span>${ico("link")}Underline links</span><i class="tog"></i></button></li>
+      </ul>
+      <button class="reset gold" type="button">Reset all</button>
+      <div class="credit">angieCREATEs</div>
+    </section>
+  </div>`;
+
+  function ico(name) {
+    const p = {
+      contrast: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>',
+      pause: '<circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/>',
+      spacing: '<path d="M4 7h16M4 12h10M4 17h13"/>',
+      font: '<path d="M5 19L10.5 5h3L19 19"/><path d="M7.5 13.5h9"/>',
+      link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+    }[name];
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+  }
+
+  const orb = root.querySelector(".orb");
+  const panel = root.querySelector(".panel");
+  const tap = root.querySelector(".tapr");
+  let state = load();
+
+  const render = () => {
+    root.querySelectorAll(".seg button").forEach((b) => {
+      const on = Number(b.dataset.text) === state.text;
+      b.setAttribute("aria-pressed", String(on));
+      b.classList.toggle("gold", on);
+    });
+    root.querySelectorAll(".row").forEach((r) => r.setAttribute("aria-checked", String(!!state[r.dataset.key])));
+    apply(state);
+    save(state);
+  };
+
+  const open = (yes) => {
+    panel.hidden = !yes;
+    orb.setAttribute("aria-expanded", String(yes));
+    if (yes) root.querySelector(".seg button").focus();
+  };
+
+  orb.addEventListener("click", () => {
+    tap.classList.remove("splash"); void tap.offsetWidth; tap.classList.add("splash");
+    open(panel.hidden);
+  });
+  root.querySelector(".close").addEventListener("click", () => { open(false); orb.focus(); });
+  root.querySelectorAll(".seg button").forEach((b) => b.addEventListener("click", () => { state.text = Number(b.dataset.text); render(); }));
+  root.querySelectorAll(".row").forEach((r) => r.addEventListener("click", () => { state[r.dataset.key] = !state[r.dataset.key]; render(); }));
+  root.querySelector(".reset").addEventListener("click", () => { state = { ...DEFAULTS }; render(); });
+  root.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) { open(false); orb.focus(); } });
+  document.addEventListener("click", (e) => { if (!panel.hidden && !e.composedPath().includes(host)) open(false); });
+
+  const mount = () => { document.body.appendChild(host); render(); };
+  if (document.body) mount(); else document.addEventListener("DOMContentLoaded", mount);
+})();
+</script>
