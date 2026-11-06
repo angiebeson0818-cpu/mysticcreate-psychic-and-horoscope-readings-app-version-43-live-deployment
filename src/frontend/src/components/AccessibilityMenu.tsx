@@ -1,5 +1,4 @@
 import {
-  Accessibility,
   Contrast,
   Link2,
   MousePointer2,
@@ -131,25 +130,102 @@ export default function AccessibilityMenu({
   ];
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
-      <button
-        ref={buttonRef}
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        aria-controls={panelId}
-        aria-label="Accessibility settings"
-        className={`a11y-trigger w-11 h-11 rounded-full flex items-center justify-center bg-onyx/90 border-2 backdrop-blur-md transition-transform duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-100 ${ring}`}
-      >
-        <Accessibility className={`w-5 h-5 ${accent}`} aria-hidden="true" />
-      </button>
+    <div className="fixed bottom-3 left-3 z-50">
+      {/* Liquid gold orb with a shimmering ribbon (styles in index.css) */}
+      <div className={`lg-wrap ${isBlueTheme ? "lg-pearl" : ""}`}>
+        <svg className="lg-ribbon" viewBox="0 0 76 76" aria-hidden="true">
+          <defs>
+            <linearGradient id="lgRibbon" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#8a6a1f" />
+              <stop offset=".45" stopColor="#fff6d5" />
+              <stop offset="1" stopColor="#d4af37" />
+            </linearGradient>
+          </defs>
+          <circle cx="38" cy="38" r="35" />
+          <circle
+            className="lg-thin"
+            cx="38"
+            cy="38"
+            r="35"
+            transform="rotate(160 38 38)"
+          />
+        </svg>
+        <i className="lg-spark lg-s1" />
+        <i className="lg-spark lg-s2" />
+        <i className="lg-spark lg-s3" />
+        <span className="lg-ripple lg-r1" />
+        <span className="lg-ripple lg-r2" />
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label="Accessibility settings"
+          className="lg-orb"
+        >
+          <span className="lg-wave lg-w1">
+            <svg
+              viewBox="0 0 200 60"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M0 20 Q25 4 50 20 T100 20 T150 20 T200 20 V60 H0Z"
+                fill="rgba(160,120,26,.6)"
+              />
+              <path
+                d="M0 20 Q25 4 50 20 T100 20 T150 20 T200 20"
+                fill="none"
+                stroke="rgba(255,246,213,.85)"
+                strokeWidth="1.6"
+              />
+            </svg>
+          </span>
+          <span className="lg-wave lg-w2">
+            <svg
+              viewBox="0 0 200 60"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M0 18 Q25 32 50 18 T100 18 T150 18 T200 18 V60 H0Z"
+                fill="rgba(110,82,16,.55)"
+              />
+            </svg>
+          </span>
+          <span className="lg-gloss" />
+          <svg
+            className="lg-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle
+              cx="12"
+              cy="4.2"
+              r="1.9"
+              fill="currentColor"
+              stroke="none"
+            />
+            <path d="M5 8.5c2.3.7 4.6 1 7 1s4.7-.3 7-1" />
+            <path d="M12 9.5v5" />
+            <path d="M12 14.5l-3.2 6" />
+            <path d="M12 14.5l3.2 6" />
+          </svg>
+        </button>
+      </div>
 
       {open && (
         <section
           ref={panelRef}
           id={panelId}
           aria-label="Accessibility settings"
-          className={`absolute bottom-14 left-0 w-72 max-w-[calc(100vw-3rem)] rounded-2xl border-2 bg-onyx/95 backdrop-blur-xl p-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] ${ring}`}
+          className={`absolute bottom-[86px] left-3 w-72 max-w-[calc(100vw-3rem)] rounded-2xl border-2 bg-onyx/95 backdrop-blur-xl p-4 shadow-[0_0_40px_rgba(0,0,0,0.6)] ${ring}`}
         >
           <div className="flex items-center justify-between mb-3">
             <h2 className={`text-lg font-bold ${accent}`}>Accessibility</h2>
