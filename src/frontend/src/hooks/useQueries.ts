@@ -1,18 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useActor } from "./useActor";
 
 export function useGetPsychicReading(
   userName: string,
   enabled = false,
   refreshKey = 0,
 ) {
-  const { actor, isFetching } = useActor();
-
   return useQuery<string>({
     queryKey: ["psychicReading", userName, refreshKey],
     queryFn: async () => {
-      if (!actor) return "";
-
       // Enhanced psychic readings with client-side randomization for variety
       const psychicReadingVariations = [
         "You are on the verge of a significant breakthrough. Trust the process and embrace the transformation ahead.",
@@ -61,7 +56,7 @@ export function useGetPsychicReading(
 
       return personalizedReading;
     },
-    enabled: !!actor && !isFetching && enabled && refreshKey > 0,
+    enabled: enabled && refreshKey > 0,
     staleTime: 0,
     gcTime: 0,
     refetchOnMount: false,
@@ -71,12 +66,10 @@ export function useGetPsychicReading(
 }
 
 export function useGetHoroscope(sign: string, refreshKey = 0) {
-  const { actor, isFetching } = useActor();
-
   return useQuery<string | null>({
     queryKey: ["horoscope", sign, refreshKey],
     queryFn: async () => {
-      if (!actor || !sign) return null;
+      if (!sign) return null;
 
       // Enhanced horoscope readings with client-side randomization for variety
       const horoscopeVariations: Record<string, string[]> = {
@@ -176,7 +169,7 @@ export function useGetHoroscope(sign: string, refreshKey = 0) {
       // Fallback
       return "The stars are aligning for you today. Trust your journey.";
     },
-    enabled: !!actor && !isFetching && !!sign && refreshKey > 0,
+    enabled: !!sign && refreshKey > 0,
     staleTime: 0,
     gcTime: 0,
     refetchOnMount: false,
@@ -186,12 +179,10 @@ export function useGetHoroscope(sign: string, refreshKey = 0) {
 }
 
 export function useGetLoveHoroscope(sign: string, refreshKey = 0) {
-  const { actor, isFetching } = useActor();
-
   return useQuery<string | null>({
     queryKey: ["loveHoroscope", sign, refreshKey],
     queryFn: async () => {
-      if (!actor || !sign) return null;
+      if (!sign) return null;
 
       // Love horoscope readings with client-side randomization - sexy and creative
       const loveHoroscopeVariations: Record<string, string[]> = {
@@ -291,7 +282,7 @@ export function useGetLoveHoroscope(sign: string, refreshKey = 0) {
       // Fallback
       return "Love is in the stars for you today. Open your heart.";
     },
-    enabled: !!actor && !isFetching && !!sign && refreshKey > 0,
+    enabled: !!sign && refreshKey > 0,
     staleTime: 0,
     gcTime: 0,
     refetchOnMount: false,

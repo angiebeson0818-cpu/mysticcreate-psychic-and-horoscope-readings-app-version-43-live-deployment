@@ -177,7 +177,7 @@ export default function CustomCursor() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[9999]"
+      className="star-cursor-canvas fixed inset-0 pointer-events-none z-[9999]"
     />
   );
 }

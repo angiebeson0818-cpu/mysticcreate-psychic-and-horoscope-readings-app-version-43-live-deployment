@@ -64,7 +64,7 @@ export default function ZenMusicPlayer({ isBlueTheme }: ZenMusicPlayerProps) {
             ${
               isBlueTheme
                 ? "bg-neutral-950/90 text-amber-50 border border-amber-100/40"
-                : "bg-amber-900/90 text-yellow-200 border border-yellow-500/40"
+                : "bg-onyx/90 text-gold border border-gold/50"
             }
           `}
         >
