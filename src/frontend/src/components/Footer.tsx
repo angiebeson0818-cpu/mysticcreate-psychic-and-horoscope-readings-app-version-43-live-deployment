@@ -20,7 +20,7 @@ export default function Footer({ isBlueTheme = false }: FooterProps) {
       >
         <div className="container mx-auto text-center space-y-4">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
-            {/* Moondress image positioned to the left - now clickable */}
+            {/* About Her photo - opens the About Her window */}
             <div className="relative order-1 md:order-1">
               <button
                 type="button"
@@ -29,9 +29,9 @@ export default function Footer({ isBlueTheme = false }: FooterProps) {
                 aria-label="Learn about Angela Beson"
               >
                 <img
-                  src="/assets/uploads/ang_sun_moondress-1-2-1.jpg"
+                  src="/assets/brand/angie-about.webp"
                   alt="Angela Beson - Click to learn more"
-                  className={`w-32 h-48 sm:w-40 sm:h-60 md:w-48 md:h-72 object-contain rounded-lg transition-all duration-500 ease-in-out ${
+                  className={`w-32 h-48 sm:w-40 sm:h-60 md:w-48 md:h-72 object-cover object-top rounded-lg transition-all duration-500 ease-in-out ${
                     isBlueTheme
                       ? "shadow-[0_0_30px_rgba(245,232,199,0.4)] border border-amber-100/40 group-hover:shadow-[0_0_50px_rgba(245,232,199,0.7)] group-hover:border-amber-100/70"
                       : "shadow-[0_0_30px_rgba(218,165,32,0.3)] border border-gold/30 group-hover:shadow-[0_0_50px_rgba(218,165,32,0.6)] group-hover:border-gold/60"
@@ -74,8 +74,8 @@ export default function Footer({ isBlueTheme = false }: FooterProps) {
                 className="relative block rounded-full transition-transform duration-500 ease-in-out hover:scale-105"
               >
                 <img
-                  src="/assets/generated/officiallogo4CREATE-transparent.png"
-                  alt="angieCREATEs logo"
+                  src="/assets/brand/mysticcreate-c-logo.webp"
+                  alt="mysticCREATE logo"
                   className={`w-32 h-32 sm:w-40 sm:h-40 rounded-full object-contain shadow-lg transition-all duration-500 ease-in-out ${
                     isBlueTheme
                       ? "shadow-[0_0_30px_rgba(245,232,199,0.35)]"

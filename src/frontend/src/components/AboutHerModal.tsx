@@ -72,6 +72,17 @@ export default function AboutHerModal({
                 : "bg-gradient-to-br from-card/60 to-background/60 border-gold/40 shadow-[0_0_40px_rgba(218,165,32,0.3)]"
             }`}
           >
+            <img
+              src="/assets/brand/angie-about.webp"
+              alt="Angela Beson, founder of angieCREATEs"
+              width={800}
+              height={1200}
+              className={`mx-auto mb-6 w-48 h-64 md:w-56 md:h-72 object-cover object-top rounded-2xl border-2 transition-all duration-500 ease-in-out ${
+                isBlueTheme
+                  ? "border-amber-100/50 shadow-[0_0_35px_rgba(245,232,199,0.45)]"
+                  : "border-gold/60 shadow-[0_0_35px_rgba(218,165,32,0.5)]"
+              }`}
+            />
             <p
               className={`text-lg md:text-xl leading-relaxed text-center space-y-4 transition-colors duration-500 ease-in-out ${
                 isBlueTheme ? "text-amber-50" : "text-cream"
