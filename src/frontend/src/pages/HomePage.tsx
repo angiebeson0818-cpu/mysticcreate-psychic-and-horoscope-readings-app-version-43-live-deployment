@@ -59,7 +59,7 @@ export default function HomePage() {
       {/* Moondress Watermark Overlay */}
       <div className="decorative-bg fixed inset-0 z-0 flex items-center justify-center pointer-events-none moondress-watermark">
         <img
-          src="/assets/uploads/ang_sun_moondress-1-2-1.jpg"
+          src="/assets/brand/angie-cosmic.webp"
           alt=""
           className="h-[85vh] w-auto object-contain"
         />
